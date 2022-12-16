@@ -1,0 +1,8 @@
+C:\Users\Santiago Rojas\Documents\GitHub\Curso-CS\Sección4\Sección4\bin\Debug\Sección4.exe.config
+C:\Users\Santiago Rojas\Documents\GitHub\Curso-CS\Sección4\Sección4\bin\Debug\Sección4.exe
+C:\Users\Santiago Rojas\Documents\GitHub\Curso-CS\Sección4\Sección4\bin\Debug\Sección4.pdb
+C:\Users\Santiago Rojas\Documents\GitHub\Curso-CS\Sección4\Sección4\obj\Debug\Sección4.csproj.AssemblyReference.cache
+C:\Users\Santiago Rojas\Documents\GitHub\Curso-CS\Sección4\Sección4\obj\Debug\Sección4.csproj.SuggestedBindingRedirects.cache
+C:\Users\Santiago Rojas\Documents\GitHub\Curso-CS\Sección4\Sección4\obj\Debug\Sección4.csproj.CoreCompileInputs.cache
+C:\Users\Santiago Rojas\Documents\GitHub\Curso-CS\Sección4\Sección4\obj\Debug\Sección4.exe
+C:\Users\Santiago Rojas\Documents\GitHub\Curso-CS\Sección4\Sección4\obj\Debug\Sección4.pdb

@@ -1,0 +1,27 @@
+static void Main(string[] args)
+        {
+            // Asignación compuesta (x -= 5) == (x = x - 5)
+            // (acumulador = acumulador + variable) == (acumulador += variable)
+
+            //Variables
+            byte i, numAlumnos;
+            double calificacion, sumaCalif = 0, promedio;
+
+            Console.Write("Ingresa el número de alumnos: ");
+            numAlumnos = Convert.ToByte(Console.ReadLine());
+
+            for (i = 1; i <= numAlumnos; i++)
+            {
+                Console.Write("Ingresa la calificación: ");
+                calificacion = Convert.ToDouble(Console.ReadLine());
+
+                sumaCalif += calificacion;
+            }
+
+            //Calculamos el promedio
+            promedio = sumaCalif / numAlumnos;
+
+            //Mostramos el promedio
+            Console.WriteLine("El promedio es: {0}", promedio);
+
+        }
