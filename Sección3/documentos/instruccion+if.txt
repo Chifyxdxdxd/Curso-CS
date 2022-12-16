@@ -1,0 +1,27 @@
+static void Main(string[] args)
+        {
+
+            // Pedir un número al usuario y determinar si éste es positivo o negativo
+
+            // Variables
+            double numero;
+
+            // Pedimos el número a evaluar
+            Console.Write("Dame el número: ");
+            numero = Convert.ToDouble(Console.ReadLine());
+
+            // Usamos un condicional "if" para saber si el número es mayor que cero
+            if (numero > 0)
+            {
+                // Se ejecuta en caso de que la expresión se evalúe como true
+                Console.WriteLine("El número es positivo");
+            }
+
+            // Usamos un condicional "if" para saber si el número es menor que cero
+            if (numero < 0)
+            {
+                // Se ejecuta en caso de que la expresión se evalúe como true
+                Console.WriteLine("El número es negativo");
+            }
+
+        }
