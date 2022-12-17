@@ -5,11 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Tarea
-{   
+{
     //Por motivos de ahorrar tiempo voy a usar el código que ofrece el profesor hasta el momento, voy a agregar y/o hacer los cambios que pida o vea necesarios
 
 
     //1. Agregar el cálculo del promedio de calificaciones para cada salón en el ejercicio de matrices escalonadas.
+    //2. Agregar el cálculo de la menor calificación para cada salón en el ejercicio de matrices escalonadas.
     internal class SalonesYCalificaciones
     {
         static void Main(string[] args)
@@ -28,7 +29,7 @@ namespace Tarea
             // Pedimos el número de alumnos por salón
             for (i = 0; i < salones; i++)
             {
-                Console.Write("Ingrese el número de alumnos para el salón {0}: ", i+1);
+                Console.Write("Ingrese el número de alumnos para el salón {0}: ", i);
                 numAlumnos = Convert.ToByte(Console.ReadLine());
 
                 //Acumulamos el número de alumnos totales, para el promedio de toda la escuela
@@ -102,8 +103,15 @@ namespace Tarea
             {
                 PromedioSalon(i,calificaciones[i]);
             }
+
+            //Mostramos la menor nota por salon
+            for (i = 0; i < salones; i++)
+            {
+                notaMenorSalon(i, calificaciones[i]);
+            }
             
         }
+
         static void PromedioSalon(byte numSalon, double[] calificaciones)
         {
             double sumaAlumnos = 0, sumaCalif = 0, promedio;
@@ -115,10 +123,21 @@ namespace Tarea
             }
             promedio = sumaCalif / sumaAlumnos;
 
-            Console.WriteLine("El promedio del salón {0} es: {1}", numSalon+1, promedio);
+            Console.WriteLine("El promedio del salón {0} es: {1}", numSalon, promedio);
         }
 
-
+        static void notaMenorSalon(byte numSalon, double[] calificaciones)
+        {
+            double califMin = 0;
+            for (int j = 0; j < calificaciones.Length; j++)
+            {
+                if (calificaciones[j] < califMin)
+                {
+                    califMin = calificaciones[j];
+                }
+            }
+            Console.WriteLine("La califiación mínima del salon {0} es: {1}", numSalon, califMin);
+        }
 
 
     }
