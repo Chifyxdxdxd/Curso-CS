@@ -12,6 +12,7 @@ namespace Tarea
     //1. Agregar el cálculo del promedio de calificaciones para cada salón en el ejercicio de matrices escalonadas.
     //2. Agregar el cálculo de la menor calificación para cada salón en el ejercicio de matrices escalonadas.
     //3. Agregar el cálculo de la mayor calificación para cada salón en el ejercicio de matrices escalonadas.
+    //4. Agregar cambios estéticos al programa para que no se vea amontonado, algunos espacios y títulos vendrían bien.
     internal class SalonesYCalificaciones
     {
         static void Main(string[] args)
@@ -43,7 +44,7 @@ namespace Tarea
             //Pedimos las calificaciones de los alumnos de cada salón
             for (i = 0; i < salones; i++)
             {
-                Console.WriteLine("Salón {0}", i);
+                Console.WriteLine("\nSalón {0}", i);
                 for (j = 0; j < calificaciones[i].Length; j++)
                 {
                     //Pedimos la califiación
@@ -87,7 +88,7 @@ namespace Tarea
             //Mostramos las calificaciones de todos los alumnos de la escuela
             for (i = 0; i < salones; i++)
             {
-                Console.WriteLine("Salón {0}", i);
+                Console.WriteLine("\nSalón {0}\n", i);
                 for (j = 0; j < calificaciones[i].Length; j++)
                 {
                     Console.WriteLine("El alumno {0}, tiene {1} de calificación", j, calificaciones[i][j]);
@@ -95,25 +96,28 @@ namespace Tarea
             }
 
             //Mostramos los resultados
-            Console.WriteLine("El promedio es: {0}", promedio);
+            Console.WriteLine("\nEl promedio es: {0}", promedio);
             Console.WriteLine("La califiación mínima es: {0}", califMin);
             Console.WriteLine("La califiación máxima es: {0}", califMax);
 
             //Mostramos el promedio por salon
             for (i = 0; i < salones; i++)
             {
+                Console.WriteLine();
                 PromedioSalon(i,calificaciones[i]);
             }
 
             //Mostramos la menor nota por salon
             for (i = 0; i < salones; i++)
             {
+                Console.WriteLine();
                 notaMenorSalon(i, calificaciones[i]);
             }
 
             //Mostramos la mayor nota por salon
             for (i = 0; i < salones; i++)
             {
+                Console.WriteLine();
                 notaMayorSalon(i, calificaciones[i]);
             }
 
@@ -135,7 +139,7 @@ namespace Tarea
 
         static void notaMenorSalon(byte numSalon, double[] calificaciones)
         {
-            double califMin = 0;
+            double califMin = 10;
             for (int j = 0; j < calificaciones.Length; j++)
             {
                 if (calificaciones[j] < califMin)
