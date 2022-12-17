@@ -11,6 +11,7 @@ namespace Tarea
 
     //1. Agregar el cálculo del promedio de calificaciones para cada salón en el ejercicio de matrices escalonadas.
     //2. Agregar el cálculo de la menor calificación para cada salón en el ejercicio de matrices escalonadas.
+    //3. Agregar el cálculo de la mayor calificación para cada salón en el ejercicio de matrices escalonadas.
     internal class SalonesYCalificaciones
     {
         static void Main(string[] args)
@@ -109,7 +110,13 @@ namespace Tarea
             {
                 notaMenorSalon(i, calificaciones[i]);
             }
-            
+
+            //Mostramos la mayor nota por salon
+            for (i = 0; i < salones; i++)
+            {
+                notaMayorSalon(i, calificaciones[i]);
+            }
+
         }
 
         static void PromedioSalon(byte numSalon, double[] calificaciones)
@@ -139,6 +146,17 @@ namespace Tarea
             Console.WriteLine("La califiación mínima del salon {0} es: {1}", numSalon, califMin);
         }
 
-
+        static void notaMayorSalon(byte numSalon, double[] calificaciones)
+        {
+            double califMax = 0;
+            for (int j = 0; j < calificaciones.Length; j++)
+            {
+                if (calificaciones[j] > califMax)
+                {
+                    califMax = calificaciones[j];
+                }
+            }
+            Console.WriteLine("La califiación máxima del salon {0} es: {1}", numSalon, califMax);
+        }
     }
 }
