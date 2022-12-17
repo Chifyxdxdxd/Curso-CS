@@ -1,0 +1,8 @@
+C:\Users\Santiago Rojas\Documents\GitHub\Curso-CS\Sección8\Sección8\bin\Debug\Sección8.exe.config
+C:\Users\Santiago Rojas\Documents\GitHub\Curso-CS\Sección8\Sección8\bin\Debug\Sección8.exe
+C:\Users\Santiago Rojas\Documents\GitHub\Curso-CS\Sección8\Sección8\bin\Debug\Sección8.pdb
+C:\Users\Santiago Rojas\Documents\GitHub\Curso-CS\Sección8\Sección8\obj\Debug\Sección8.csproj.AssemblyReference.cache
+C:\Users\Santiago Rojas\Documents\GitHub\Curso-CS\Sección8\Sección8\obj\Debug\Sección8.csproj.SuggestedBindingRedirects.cache
+C:\Users\Santiago Rojas\Documents\GitHub\Curso-CS\Sección8\Sección8\obj\Debug\Sección8.csproj.CoreCompileInputs.cache
+C:\Users\Santiago Rojas\Documents\GitHub\Curso-CS\Sección8\Sección8\obj\Debug\Sección8.exe
+C:\Users\Santiago Rojas\Documents\GitHub\Curso-CS\Sección8\Sección8\obj\Debug\Sección8.pdb
