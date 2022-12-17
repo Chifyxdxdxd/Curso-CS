@@ -1,0 +1,8 @@
+C:\Users\Santiago Rojas\Documents\GitHub\Curso-CS\Sección6\Tarea\bin\Debug\Tarea.exe.config
+C:\Users\Santiago Rojas\Documents\GitHub\Curso-CS\Sección6\Tarea\bin\Debug\Tarea.exe
+C:\Users\Santiago Rojas\Documents\GitHub\Curso-CS\Sección6\Tarea\bin\Debug\Tarea.pdb
+C:\Users\Santiago Rojas\Documents\GitHub\Curso-CS\Sección6\Tarea\obj\Debug\Tarea.csproj.AssemblyReference.cache
+C:\Users\Santiago Rojas\Documents\GitHub\Curso-CS\Sección6\Tarea\obj\Debug\Tarea.csproj.SuggestedBindingRedirects.cache
+C:\Users\Santiago Rojas\Documents\GitHub\Curso-CS\Sección6\Tarea\obj\Debug\Tarea.csproj.CoreCompileInputs.cache
+C:\Users\Santiago Rojas\Documents\GitHub\Curso-CS\Sección6\Tarea\obj\Debug\Tarea.exe
+C:\Users\Santiago Rojas\Documents\GitHub\Curso-CS\Sección6\Tarea\obj\Debug\Tarea.pdb
