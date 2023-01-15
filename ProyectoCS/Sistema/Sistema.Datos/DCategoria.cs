@@ -2,6 +2,7 @@
 using System.Data;
 using Sistema.Entidades;
 using System.Data.SqlClient;
+using System.Security.AccessControl;
 
 namespace Sistema.Datos
 {
@@ -56,6 +57,37 @@ namespace Sistema.Datos
                 if (sqlCon.State == ConnectionState.Open)
                     sqlCon.Close();
             }
+        }
+
+        public string Existe(string val)
+        {
+            string respuesta = "";
+            SqlConnection sqlCon = new SqlConnection();
+            try
+            {
+                sqlCon = Conexion.getInstancia().crearConexion();
+                SqlCommand comando = new SqlCommand("categoria_existe", sqlCon);
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.Add("@valor", SqlDbType.VarChar).Value = val;
+                SqlParameter parExiste = new SqlParameter();
+                parExiste.ParameterName = "@existe";
+                parExiste.SqlDbType= SqlDbType.Int;
+                parExiste.Direction = ParameterDirection.Output;
+                comando.Parameters.Add(parExiste);
+                sqlCon.Open();
+                comando.ExecuteNonQuery();
+                respuesta = Convert.ToString(parExiste.Value);
+            }
+            catch (Exception ex)
+            {
+                respuesta = ex.Message;
+            }
+            finally
+            {
+                if (sqlCon.State == ConnectionState.Open)
+                    sqlCon.Close();
+            }
+            return respuesta;
         }
 
         public string Insertar (Categoria obj) 

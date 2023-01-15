@@ -1,0 +1,5 @@
+este proyecto esta basado en el curso 
+	Desarrolla Sistemas en C# .Net - 4 capas con SQL Server
+ofrecido por 
+	Juan Carlos Arcila Díaz
+en udemy.
