@@ -1,0 +1,9 @@
+C:\Users\Santiago Rojas\Documents\GitHub\Curso-CS\ProyectoCS\Sistema\Sistema.Datos\bin\Debug\Sistema.Datos.dll
+C:\Users\Santiago Rojas\Documents\GitHub\Curso-CS\ProyectoCS\Sistema\Sistema.Datos\bin\Debug\Sistema.Datos.pdb
+C:\Users\Santiago Rojas\Documents\GitHub\Curso-CS\ProyectoCS\Sistema\Sistema.Datos\bin\Debug\Sistema.Entidades.dll
+C:\Users\Santiago Rojas\Documents\GitHub\Curso-CS\ProyectoCS\Sistema\Sistema.Datos\bin\Debug\Sistema.Entidades.pdb
+C:\Users\Santiago Rojas\Documents\GitHub\Curso-CS\ProyectoCS\Sistema\Sistema.Datos\obj\Debug\Sistema.Datos.csproj.AssemblyReference.cache
+C:\Users\Santiago Rojas\Documents\GitHub\Curso-CS\ProyectoCS\Sistema\Sistema.Datos\obj\Debug\Sistema.Datos.csproj.CoreCompileInputs.cache
+C:\Users\Santiago Rojas\Documents\GitHub\Curso-CS\ProyectoCS\Sistema\Sistema.Datos\obj\Debug\Sistema.Datos.csproj.CopyComplete
+C:\Users\Santiago Rojas\Documents\GitHub\Curso-CS\ProyectoCS\Sistema\Sistema.Datos\obj\Debug\Sistema.Datos.dll
+C:\Users\Santiago Rojas\Documents\GitHub\Curso-CS\ProyectoCS\Sistema\Sistema.Datos\obj\Debug\Sistema.Datos.pdb

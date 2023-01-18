@@ -30,15 +30,22 @@ namespace Sistema.Datos
             SqlConnection cadena = new SqlConnection();
             try
             {
-                cadena.ConnectionString = "Server={$this.servidor};Database={$this.@base};";
+                cadena.ConnectionString = "Server=" + this.servidor + ";Database=" + this.@base + ";";
+
+                cadena.ConnectionString += this.seguridad ? 
+                    "Integrated Security = SSPI;":
+                    "User Id=" + this.usuario + ";Password=" + this.clave + ";";
+
+                /*
                 if (this.seguridad)
                 {
-                    cadena.ConnectionString+= "Integrated Security = SSPI;";
+                    cadena.ConnectionString += "Integrated Security = SSPI;";
                 }
                 else
                 {
-                    cadena.ConnectionString += "User Id={$this.usuario};Password={$this.clave};";
+                    cadena.ConnectionString += "User Id=" + this.usuario + ";Password=" + this.clave + ";";
                 }
+                */
             }
             catch (Exception ex)
             {

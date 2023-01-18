@@ -153,6 +153,7 @@ namespace Sistema.Datos
                 SqlCommand comando = new SqlCommand("categoria_eliminar", sqlCon);
                 comando.CommandType = CommandType.StoredProcedure;
                 comando.Parameters.Add("@idcategoria", SqlDbType.Int).Value = id;
+                sqlCon.Open();
                 respuesta = comando.ExecuteNonQuery() == 1 ? "OK" : "No se pudo eliminar el resgistro";
             }
             catch (Exception ex)
@@ -177,6 +178,7 @@ namespace Sistema.Datos
                 SqlCommand comando = new SqlCommand("categoria_activar", sqlCon);
                 comando.CommandType = CommandType.StoredProcedure;
                 comando.Parameters.Add("@idcategoria", SqlDbType.Int).Value = id;
+                sqlCon.Open();
                 respuesta = comando.ExecuteNonQuery() == 1 ? "OK" : "No se pudo activar el resgistro";
             }
             catch (Exception ex)
@@ -201,6 +203,7 @@ namespace Sistema.Datos
                 SqlCommand comando = new SqlCommand("categoria_desactivar", sqlCon);
                 comando.CommandType = CommandType.StoredProcedure;
                 comando.Parameters.Add("@idcategoria", SqlDbType.Int).Value = id;
+                sqlCon.Open();
                 respuesta = comando.ExecuteNonQuery() == 1 ? "OK" : "No se pudo desactivar el resgistro";
             }
             catch (Exception ex)

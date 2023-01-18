@@ -43,7 +43,7 @@ namespace Sistema.Negocio
             
         }
 
-        public static string Actializar(int id, string nombre, string descripcion)
+        public static string Actualizar(int id, string nombre, string descripcion)
         {
             DCategoria datos = new DCategoria();
             string existe = datos.Existe(nombre);
@@ -54,11 +54,12 @@ namespace Sistema.Negocio
             }
             else
             {
+
                 Categoria obj = new Categoria();
                 obj.idCategoria = id;
                 obj.nombre = nombre;
                 obj.descripcion = descripcion;
-                return datos.Insertar(obj);
+                return datos.Actualizar(obj);
             }
         }
 
@@ -68,13 +69,13 @@ namespace Sistema.Negocio
             return datos.Eliminar(id);
         }
 
-        public static string Actualizar(int id)
+        public static string Activar(int id)
         {
             DCategoria datos = new DCategoria();
             return datos.Activar(id);
         }
 
-        public static string Desactualizar(int id)
+        public static string Desactivar(int id)
         {
             DCategoria datos = new DCategoria();
             return datos.Desactivar(id);
