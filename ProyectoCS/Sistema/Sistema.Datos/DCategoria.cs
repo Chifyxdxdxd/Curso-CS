@@ -58,6 +58,32 @@ namespace Sistema.Datos
             }
         }
 
+        public DataTable Seleccionar()
+        {
+            SqlDataReader resultado;
+            DataTable tabla = new DataTable();
+            SqlConnection sqlCon = new SqlConnection();
+            try
+            {
+                sqlCon = Conexion.getInstancia().crearConexion();
+                SqlCommand comando = new SqlCommand("categoria_seleccionar", sqlCon);
+                comando.CommandType = CommandType.StoredProcedure;
+                sqlCon.Open();
+                resultado = comando.ExecuteReader();
+                tabla.Load(resultado);
+                return tabla;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (sqlCon.State == ConnectionState.Open)
+                    sqlCon.Close();
+            }
+        }
+
         public string Existe(string val)
         {
             string respuesta = "";

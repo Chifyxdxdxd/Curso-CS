@@ -1,12 +1,11 @@
 ﻿using Sistema.Datos;
 using Sistema.Entidades;
 using System.Data;
-using System.Runtime.Remoting;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace Sistema.Negocio
 {
-    internal class NArticulo
+    public class NArticulo
     {
         public static DataTable Listar()
         {

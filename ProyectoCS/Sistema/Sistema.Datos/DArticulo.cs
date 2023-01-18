@@ -57,7 +57,7 @@ namespace Sistema.Datos
                     sqlCon.Close();
             }
         }
-
+        
         public string Existe(string val)
         {
             string respuesta = "";

@@ -9,19 +9,25 @@ namespace Sistema.Negocio
 
         public static DataTable Listar() 
         { 
-            DArticulo datos = new DArticulo();
+            DCategoria datos = new DCategoria();
             return datos.Listar(); 
         }
 
         public static DataTable Buscar(string val)
         {
-            DArticulo datos = new DArticulo();
+            DCategoria datos = new DCategoria();
             return datos.Buscar(val);
+        }
+
+        public static DataTable Seleccionar()
+        {
+            DCategoria datos = new DCategoria();
+            return datos.Seleccionar();
         }
 
         public static string Insertar(string nombre, string descripcion)
         {
-            DArticulo datos = new DArticulo();
+            DCategoria datos = new DCategoria();
             string existe  = datos.Existe(nombre);
 
             if (existe.Equals("1"))
@@ -40,7 +46,7 @@ namespace Sistema.Negocio
 
         public static string Actualizar(int id, string nombre, string descripcion)
         {
-            DArticulo datos = new DArticulo();
+            DCategoria datos = new DCategoria();
             string existe = datos.Existe(nombre);
 
             if (existe.Equals("0"))
@@ -60,19 +66,19 @@ namespace Sistema.Negocio
 
         public static string Eliminar(int id)
         {
-            DArticulo datos = new DArticulo();
+            DCategoria datos = new DCategoria();
             return datos.Eliminar(id);
         }
 
         public static string Activar(int id)
         {
-            DArticulo datos = new DArticulo();
+            DCategoria datos = new DCategoria();
             return datos.Activar(id);
         }
 
         public static string Desactivar(int id)
         {
-            DArticulo datos = new DArticulo();
+            DCategoria datos = new DCategoria();
             return datos.Desactivar(id);
         }
     }
