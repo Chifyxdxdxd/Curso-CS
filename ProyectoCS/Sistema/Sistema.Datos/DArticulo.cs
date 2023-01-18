@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 
 namespace Sistema.Datos
 {
-    public class DCategoria
+    public class DArticulo
     {
         public DataTable Listar()
         {
@@ -15,9 +15,9 @@ namespace Sistema.Datos
             try
             {
                 sqlCon = Conexion.getInstancia().crearConexion();
-                SqlCommand comando = new SqlCommand("categoria_listar", sqlCon);
+                SqlCommand comando = new SqlCommand("articulo_listar", sqlCon);
                 sqlCon.Open();
-                resultado =  comando.ExecuteReader();
+                resultado = comando.ExecuteReader();
                 tabla.Load(resultado);
                 return tabla;
             }
@@ -25,14 +25,14 @@ namespace Sistema.Datos
             {
                 throw ex;
             }
-            finally 
-            { 
+            finally
+            {
                 if (sqlCon.State == ConnectionState.Open)
-                    sqlCon.Close(); 
+                    sqlCon.Close();
             }
         }
 
-        public DataTable Buscar(string val) 
+        public DataTable Buscar(string val)
         {
             SqlDataReader resultado;
             DataTable tabla = new DataTable();
@@ -40,7 +40,7 @@ namespace Sistema.Datos
             try
             {
                 sqlCon = Conexion.getInstancia().crearConexion();
-                SqlCommand comando = new SqlCommand("categoria_buscar", sqlCon);
+                SqlCommand comando = new SqlCommand("articulo_buscar", sqlCon);
                 comando.Parameters.Add("@valor", SqlDbType.VarChar).Value = val;
                 sqlCon.Open();
                 resultado = comando.ExecuteReader();
@@ -65,12 +65,12 @@ namespace Sistema.Datos
             try
             {
                 sqlCon = Conexion.getInstancia().crearConexion();
-                SqlCommand comando = new SqlCommand("categoria_existe", sqlCon);
+                SqlCommand comando = new SqlCommand("articulo_existe", sqlCon);
                 comando.CommandType = CommandType.StoredProcedure;
                 comando.Parameters.Add("@valor", SqlDbType.VarChar).Value = val;
                 SqlParameter parExiste = new SqlParameter();
                 parExiste.ParameterName = "@existe";
-                parExiste.SqlDbType= SqlDbType.Int;
+                parExiste.SqlDbType = SqlDbType.Int;
                 parExiste.Direction = ParameterDirection.Output;
                 comando.Parameters.Add(parExiste);
                 sqlCon.Open();
@@ -89,44 +89,22 @@ namespace Sistema.Datos
             return respuesta;
         }
 
-        public string Insertar (Categoria obj) 
+        public string Insertar(Articulo obj)
         {
             string respuesta = "";
             SqlConnection sqlCon = new SqlConnection();
             try
             {
                 sqlCon = Conexion.getInstancia().crearConexion();
-                SqlCommand comando = new SqlCommand("categoria_insertar", sqlCon);
-                comando.CommandType = CommandType.StoredProcedure;
-                comando.Parameters.Add("@nombre", SqlDbType.VarChar).Value = obj.nombre;
-                comando.Parameters.Add("@descripcion", SqlDbType.VarChar).Value = obj.descripcion;
-                sqlCon.Open();
-                respuesta = comando.ExecuteNonQuery() == 1 ? "OK" : "No se pudo ingresar el resgistro";
-            }
-            catch (Exception ex)
-            {
-                respuesta = ex.Message;
-            }
-            finally
-            {
-                if (sqlCon.State == ConnectionState.Open)
-                    sqlCon.Close();
-            }
-            return respuesta;
-        }
-
-        public string Actualizar (Categoria obj) 
-        {
-            string respuesta = "";
-            SqlConnection sqlCon = new SqlConnection();
-            try
-            {
-                sqlCon = Conexion.getInstancia().crearConexion();
-                SqlCommand comando = new SqlCommand("categoria_actualizar", sqlCon);
+                SqlCommand comando = new SqlCommand("articulo_insertar", sqlCon);
                 comando.CommandType = CommandType.StoredProcedure;
                 comando.Parameters.Add("@idcategoria", SqlDbType.Int).Value = obj.idCategoria;
+                comando.Parameters.Add("@codigo", SqlDbType.VarChar).Value = obj.codigo;
                 comando.Parameters.Add("@nombre", SqlDbType.VarChar).Value = obj.nombre;
+                comando.Parameters.Add("@precio_venta", SqlDbType.Decimal).Value = obj.precioVenta;
+                comando.Parameters.Add("@stock", SqlDbType.Int).Value = obj.stock;
                 comando.Parameters.Add("@descripcion", SqlDbType.VarChar).Value = obj.descripcion;
+                comando.Parameters.Add("@imagen", SqlDbType.VarChar).Value = obj.imagen;
                 sqlCon.Open();
                 respuesta = comando.ExecuteNonQuery() == 1 ? "OK" : "No se pudo ingresar el resgistro";
             }
@@ -142,14 +120,46 @@ namespace Sistema.Datos
             return respuesta;
         }
 
-        public string Eliminar (int id) 
+        public string Actualizar(Articulo obj)
         {
             string respuesta = "";
             SqlConnection sqlCon = new SqlConnection();
             try
             {
                 sqlCon = Conexion.getInstancia().crearConexion();
-                SqlCommand comando = new SqlCommand("categoria_eliminar", sqlCon);
+                SqlCommand comando = new SqlCommand("articulo_actualizar", sqlCon);
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.Add("@idarticulo", SqlDbType.Int).Value = obj.idCategoria;
+                comando.Parameters.Add("@idcategoria", SqlDbType.Int).Value = obj.idCategoria;
+                comando.Parameters.Add("@codigo", SqlDbType.VarChar).Value = obj.codigo;
+                comando.Parameters.Add("@nombre", SqlDbType.VarChar).Value = obj.nombre;
+                comando.Parameters.Add("@precio_venta", SqlDbType.Decimal).Value = obj.precioVenta;
+                comando.Parameters.Add("@stock", SqlDbType.Int).Value = obj.stock;
+                comando.Parameters.Add("@descripcion", SqlDbType.VarChar).Value = obj.descripcion;
+                comando.Parameters.Add("@imagen", SqlDbType.VarChar).Value = obj.imagen;
+                sqlCon.Open();
+                respuesta = comando.ExecuteNonQuery() == 1 ? "OK" : "No se pudo ingresar el resgistro";
+            }
+            catch (Exception ex)
+            {
+                respuesta = ex.Message;
+            }
+            finally
+            {
+                if (sqlCon.State == ConnectionState.Open)
+                    sqlCon.Close();
+            }
+            return respuesta;
+        }
+
+        public string Eliminar(int id)
+        {
+            string respuesta = "";
+            SqlConnection sqlCon = new SqlConnection();
+            try
+            {
+                sqlCon = Conexion.getInstancia().crearConexion();
+                SqlCommand comando = new SqlCommand("articulo_eliminar", sqlCon);
                 comando.CommandType = CommandType.StoredProcedure;
                 comando.Parameters.Add("@idcategoria", SqlDbType.Int).Value = id;
                 sqlCon.Open();
@@ -167,14 +177,14 @@ namespace Sistema.Datos
             return respuesta;
         }
 
-        public string Activar (int id) 
+        public string Activar(int id)
         {
             string respuesta = "";
             SqlConnection sqlCon = new SqlConnection();
             try
             {
                 sqlCon = Conexion.getInstancia().crearConexion();
-                SqlCommand comando = new SqlCommand("categoria_activar", sqlCon);
+                SqlCommand comando = new SqlCommand("articulo_activar", sqlCon);
                 comando.CommandType = CommandType.StoredProcedure;
                 comando.Parameters.Add("@idcategoria", SqlDbType.Int).Value = id;
                 sqlCon.Open();
@@ -192,14 +202,14 @@ namespace Sistema.Datos
             return respuesta;
         }
 
-        public string Desactivar(int id) 
+        public string Desactivar(int id)
         {
             string respuesta = "";
             SqlConnection sqlCon = new SqlConnection();
             try
             {
                 sqlCon = Conexion.getInstancia().crearConexion();
-                SqlCommand comando = new SqlCommand("categoria_desactivar", sqlCon);
+                SqlCommand comando = new SqlCommand("articulo_desactivar", sqlCon);
                 comando.CommandType = CommandType.StoredProcedure;
                 comando.Parameters.Add("@idcategoria", SqlDbType.Int).Value = id;
                 sqlCon.Open();
