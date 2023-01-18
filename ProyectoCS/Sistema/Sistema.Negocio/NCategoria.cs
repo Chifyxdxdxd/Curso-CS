@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data;
-using Sistema.Datos;
+﻿using Sistema.Datos;
 using Sistema.Entidades;
+using System.Data;
 
 namespace Sistema.Negocio
 {

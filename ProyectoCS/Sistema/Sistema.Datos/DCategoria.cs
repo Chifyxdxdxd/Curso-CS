@@ -1,8 +1,7 @@
-﻿using System;
+﻿using Sistema.Entidades;
+using System;
 using System.Data;
-using Sistema.Entidades;
 using System.Data.SqlClient;
-using System.Security.AccessControl;
 
 namespace Sistema.Datos
 {
