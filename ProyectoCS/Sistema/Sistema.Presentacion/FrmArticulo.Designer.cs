@@ -53,11 +53,21 @@
             this.TxtBuscar = new System.Windows.Forms.TextBox();
             this.LblTotal = new System.Windows.Forms.Label();
             this.DgvListado = new System.Windows.Forms.DataGridView();
+            this.LblImagen = new System.Windows.Forms.Label();
+            this.PicImagen = new System.Windows.Forms.PictureBox();
+            this.TxtImagen = new System.Windows.Forms.TextBox();
+            this.BtnCargarImagen = new System.Windows.Forms.Button();
+            this.LblCodigo = new System.Windows.Forms.Label();
+            this.TxtCodigo = new System.Windows.Forms.TextBox();
+            this.BtnGenerar = new System.Windows.Forms.Button();
+            this.BtnGuardarCodigo = new System.Windows.Forms.Button();
+            this.PanelCodigo = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.ErrorIcono)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.TabGeneral.SuspendLayout();
             this.TabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvListado)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PicImagen)).BeginInit();
             this.SuspendLayout();
             // 
             // ErrorIcono
@@ -83,7 +93,7 @@
             // 
             // TxtNombre
             // 
-            this.TxtNombre.Location = new System.Drawing.Point(135, 210);
+            this.TxtNombre.Location = new System.Drawing.Point(144, 210);
             this.TxtNombre.Margin = new System.Windows.Forms.Padding(5);
             this.TxtNombre.Name = "TxtNombre";
             this.TxtNombre.Size = new System.Drawing.Size(202, 20);
@@ -91,7 +101,7 @@
             // 
             // TxtDescripcion
             // 
-            this.TxtDescripcion.Location = new System.Drawing.Point(135, 240);
+            this.TxtDescripcion.Location = new System.Drawing.Point(144, 240);
             this.TxtDescripcion.Margin = new System.Windows.Forms.Padding(5);
             this.TxtDescripcion.Multiline = true;
             this.TxtDescripcion.Name = "TxtDescripcion";
@@ -119,7 +129,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(132, 345);
+            this.label3.Location = new System.Drawing.Point(141, 347);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(174, 13);
             this.label3.TabIndex = 2;
@@ -128,7 +138,7 @@
             // LblDescripcion
             // 
             this.LblDescripcion.AutoSize = true;
-            this.LblDescripcion.Location = new System.Drawing.Point(52, 243);
+            this.LblDescripcion.Location = new System.Drawing.Point(39, 240);
             this.LblDescripcion.Name = "LblDescripcion";
             this.LblDescripcion.Size = new System.Drawing.Size(63, 13);
             this.LblDescripcion.TabIndex = 1;
@@ -136,6 +146,15 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.PanelCodigo);
+            this.tabPage2.Controls.Add(this.BtnGuardarCodigo);
+            this.tabPage2.Controls.Add(this.BtnGenerar);
+            this.tabPage2.Controls.Add(this.TxtCodigo);
+            this.tabPage2.Controls.Add(this.LblCodigo);
+            this.tabPage2.Controls.Add(this.BtnCargarImagen);
+            this.tabPage2.Controls.Add(this.TxtImagen);
+            this.tabPage2.Controls.Add(this.PicImagen);
+            this.tabPage2.Controls.Add(this.LblImagen);
             this.tabPage2.Controls.Add(this.CbxCategoria);
             this.tabPage2.Controls.Add(this.LblCategoria);
             this.tabPage2.Controls.Add(this.BtnActualizar);
@@ -158,7 +177,7 @@
             // CbxCategoria
             // 
             this.CbxCategoria.FormattingEnabled = true;
-            this.CbxCategoria.Location = new System.Drawing.Point(135, 85);
+            this.CbxCategoria.Location = new System.Drawing.Point(144, 33);
             this.CbxCategoria.Name = "CbxCategoria";
             this.CbxCategoria.Size = new System.Drawing.Size(202, 21);
             this.CbxCategoria.TabIndex = 10;
@@ -166,7 +185,7 @@
             // LblCategoria
             // 
             this.LblCategoria.AutoSize = true;
-            this.LblCategoria.Location = new System.Drawing.Point(52, 88);
+            this.LblCategoria.Location = new System.Drawing.Point(39, 33);
             this.LblCategoria.Name = "LblCategoria";
             this.LblCategoria.Size = new System.Drawing.Size(67, 13);
             this.LblCategoria.TabIndex = 9;
@@ -175,7 +194,7 @@
             // LblNombre
             // 
             this.LblNombre.AutoSize = true;
-            this.LblNombre.Location = new System.Drawing.Point(52, 213);
+            this.LblNombre.Location = new System.Drawing.Point(39, 213);
             this.LblNombre.Name = "LblNombre";
             this.LblNombre.Size = new System.Drawing.Size(57, 13);
             this.LblNombre.TabIndex = 0;
@@ -297,6 +316,87 @@
             this.DgvListado.Size = new System.Drawing.Size(1038, 291);
             this.DgvListado.TabIndex = 0;
             // 
+            // LblImagen
+            // 
+            this.LblImagen.AutoSize = true;
+            this.LblImagen.Location = new System.Drawing.Point(641, 28);
+            this.LblImagen.Name = "LblImagen";
+            this.LblImagen.Size = new System.Drawing.Size(42, 13);
+            this.LblImagen.TabIndex = 11;
+            this.LblImagen.Text = "Imagen";
+            // 
+            // PicImagen
+            // 
+            this.PicImagen.BackColor = System.Drawing.Color.Transparent;
+            this.PicImagen.Location = new System.Drawing.Point(645, 60);
+            this.PicImagen.Name = "PicImagen";
+            this.PicImagen.Size = new System.Drawing.Size(300, 300);
+            this.PicImagen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.PicImagen.TabIndex = 12;
+            this.PicImagen.TabStop = false;
+            // 
+            // TxtImagen
+            // 
+            this.TxtImagen.Enabled = false;
+            this.TxtImagen.Location = new System.Drawing.Point(699, 25);
+            this.TxtImagen.Name = "TxtImagen";
+            this.TxtImagen.Size = new System.Drawing.Size(147, 20);
+            this.TxtImagen.TabIndex = 13;
+            // 
+            // BtnCargarImagen
+            // 
+            this.BtnCargarImagen.Location = new System.Drawing.Point(869, 23);
+            this.BtnCargarImagen.Name = "BtnCargarImagen";
+            this.BtnCargarImagen.Size = new System.Drawing.Size(75, 23);
+            this.BtnCargarImagen.TabIndex = 14;
+            this.BtnCargarImagen.Text = "...";
+            this.BtnCargarImagen.UseVisualStyleBackColor = true;
+            this.BtnCargarImagen.Click += new System.EventHandler(this.BtnCargarImagen_Click);
+            // 
+            // LblCodigo
+            // 
+            this.LblCodigo.AutoSize = true;
+            this.LblCodigo.Location = new System.Drawing.Point(39, 67);
+            this.LblCodigo.Name = "LblCodigo";
+            this.LblCodigo.Size = new System.Drawing.Size(87, 13);
+            this.LblCodigo.TabIndex = 15;
+            this.LblCodigo.Text = "Código de barras";
+            // 
+            // TxtCodigo
+            // 
+            this.TxtCodigo.Location = new System.Drawing.Point(144, 64);
+            this.TxtCodigo.Name = "TxtCodigo";
+            this.TxtCodigo.Size = new System.Drawing.Size(202, 20);
+            this.TxtCodigo.TabIndex = 16;
+            // 
+            // BtnGenerar
+            // 
+            this.BtnGenerar.Location = new System.Drawing.Point(144, 91);
+            this.BtnGenerar.Name = "BtnGenerar";
+            this.BtnGenerar.Size = new System.Drawing.Size(93, 23);
+            this.BtnGenerar.TabIndex = 17;
+            this.BtnGenerar.Text = "Generar código";
+            this.BtnGenerar.UseVisualStyleBackColor = true;
+            this.BtnGenerar.Click += new System.EventHandler(this.BtnGenerar_Click);
+            // 
+            // BtnGuardarCodigo
+            // 
+            this.BtnGuardarCodigo.Enabled = false;
+            this.BtnGuardarCodigo.Location = new System.Drawing.Point(253, 91);
+            this.BtnGuardarCodigo.Name = "BtnGuardarCodigo";
+            this.BtnGuardarCodigo.Size = new System.Drawing.Size(93, 23);
+            this.BtnGuardarCodigo.TabIndex = 18;
+            this.BtnGuardarCodigo.Text = "Guardar código";
+            this.BtnGuardarCodigo.UseVisualStyleBackColor = true;
+            this.BtnGuardarCodigo.Click += new System.EventHandler(this.BtnGuardarCodigo_Click);
+            // 
+            // PanelCodigo
+            // 
+            this.PanelCodigo.Location = new System.Drawing.Point(144, 121);
+            this.PanelCodigo.Name = "PanelCodigo";
+            this.PanelCodigo.Size = new System.Drawing.Size(200, 50);
+            this.PanelCodigo.TabIndex = 19;
+            // 
             // FrmArticulo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -313,6 +413,7 @@
             this.TabPage1.ResumeLayout(false);
             this.TabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvListado)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PicImagen)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -343,5 +444,14 @@
         private System.Windows.Forms.Label LblNombre;
         private System.Windows.Forms.Label LblCategoria;
         private System.Windows.Forms.ComboBox CbxCategoria;
+        private System.Windows.Forms.Button BtnCargarImagen;
+        private System.Windows.Forms.TextBox TxtImagen;
+        private System.Windows.Forms.PictureBox PicImagen;
+        private System.Windows.Forms.Label LblImagen;
+        private System.Windows.Forms.Panel PanelCodigo;
+        private System.Windows.Forms.Button BtnGuardarCodigo;
+        private System.Windows.Forms.Button BtnGenerar;
+        private System.Windows.Forms.TextBox TxtCodigo;
+        private System.Windows.Forms.Label LblCodigo;
     }
 }

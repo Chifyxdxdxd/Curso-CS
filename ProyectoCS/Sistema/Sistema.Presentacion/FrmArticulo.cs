@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,8 @@ namespace Sistema.Presentacion
 {
     public partial class FrmArticulo : Form
     {
+        private string rutaOrigen, rutaDestino, directorio = "D:\\sistema\\";
+
         public FrmArticulo()
         {
             InitializeComponent();
@@ -109,6 +112,50 @@ namespace Sistema.Presentacion
             {
                 MessageBox.Show(ex.Message + ex.StackTrace);
             }
+        }
+
+        private void BtnCargarImagen_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog file = new OpenFileDialog();
+            file.Filter = "image files (*.jpg, *.jpeg, *.jfif, *.png) | *.jpg; *.jpeg; *.jfif; *.png";
+            if (file.ShowDialog() == DialogResult.OK)
+            {
+                PicImagen.Image = Image.FromFile(file.FileName);
+                TxtImagen.Text = file.FileName.Substring(file.FileName.LastIndexOf("\\")+1);
+                this.rutaOrigen = file.FileName;
+            }
+        }
+
+        private void BtnGenerar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                  BarcodeLib.Barcode codigo = new BarcodeLib.Barcode();
+                codigo.IncludeLabel= true;
+                PanelCodigo.BackgroundImage = codigo.Encode(BarcodeLib.TYPE.CODE128,TxtCodigo.Text,Color.Black,Color.White,200,50);
+                BtnGuardarCodigo.Enabled = true;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ingresa un código para el artículo");
+            }
+            
+            
+        }
+
+        private void BtnGuardarCodigo_Click(object sender, EventArgs e)
+        {
+            Image imgFinal = (Image) PanelCodigo.BackgroundImage.Clone();
+            SaveFileDialog dialogoGuardar = new SaveFileDialog();
+            dialogoGuardar.AddExtension = true;
+            dialogoGuardar.Filter = "Image PNG (*.png) | *.png";
+            dialogoGuardar.FileName = Convert.ToString(TxtCodigo.Text);
+            dialogoGuardar.ShowDialog();
+            if (!String.IsNullOrEmpty(dialogoGuardar.FileName))
+            {
+                imgFinal.Save(dialogoGuardar.FileName, ImageFormat.Png);
+            }
+            imgFinal.Dispose();
         }
 
         private void FrmArticulo_Load(object sender, EventArgs e)
