@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data;
-using Sistema.Datos;
+﻿using Sistema.Datos;
 using Sistema.Entidades;
+using System.Data;
 
 namespace Sistema.Negocio
 {
@@ -22,6 +17,12 @@ namespace Sistema.Negocio
         {
             DCategoria datos = new DCategoria();
             return datos.Buscar(val);
+        }
+
+        public static DataTable Seleccionar()
+        {
+            DCategoria datos = new DCategoria();
+            return datos.Seleccionar();
         }
 
         public static string Insertar(string nombre, string descripcion)

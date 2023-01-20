@@ -1,8 +1,7 @@
-﻿using System;
+﻿using Sistema.Entidades;
+using System;
 using System.Data;
-using Sistema.Entidades;
 using System.Data.SqlClient;
-using System.Security.AccessControl;
 
 namespace Sistema.Datos
 {
@@ -43,6 +42,32 @@ namespace Sistema.Datos
                 sqlCon = Conexion.getInstancia().crearConexion();
                 SqlCommand comando = new SqlCommand("categoria_buscar", sqlCon);
                 comando.Parameters.Add("@valor", SqlDbType.VarChar).Value = val;
+                sqlCon.Open();
+                resultado = comando.ExecuteReader();
+                tabla.Load(resultado);
+                return tabla;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (sqlCon.State == ConnectionState.Open)
+                    sqlCon.Close();
+            }
+        }
+
+        public DataTable Seleccionar()
+        {
+            SqlDataReader resultado;
+            DataTable tabla = new DataTable();
+            SqlConnection sqlCon = new SqlConnection();
+            try
+            {
+                sqlCon = Conexion.getInstancia().crearConexion();
+                SqlCommand comando = new SqlCommand("categoria_seleccionar", sqlCon);
+                comando.CommandType = CommandType.StoredProcedure;
                 sqlCon.Open();
                 resultado = comando.ExecuteReader();
                 tabla.Load(resultado);
@@ -100,7 +125,7 @@ namespace Sistema.Datos
                 SqlCommand comando = new SqlCommand("categoria_insertar", sqlCon);
                 comando.CommandType = CommandType.StoredProcedure;
                 comando.Parameters.Add("@nombre", SqlDbType.VarChar).Value = obj.nombre;
-                comando.Parameters.Add("descripcion", SqlDbType.VarChar).Value = obj.descripcion;
+                comando.Parameters.Add("@descripcion", SqlDbType.VarChar).Value = obj.descripcion;
                 sqlCon.Open();
                 respuesta = comando.ExecuteNonQuery() == 1 ? "OK" : "No se pudo ingresar el resgistro";
             }
@@ -127,7 +152,7 @@ namespace Sistema.Datos
                 comando.CommandType = CommandType.StoredProcedure;
                 comando.Parameters.Add("@idcategoria", SqlDbType.Int).Value = obj.idCategoria;
                 comando.Parameters.Add("@nombre", SqlDbType.VarChar).Value = obj.nombre;
-                comando.Parameters.Add("descripcion", SqlDbType.VarChar).Value = obj.descripcion;
+                comando.Parameters.Add("@descripcion", SqlDbType.VarChar).Value = obj.descripcion;
                 sqlCon.Open();
                 respuesta = comando.ExecuteNonQuery() == 1 ? "OK" : "No se pudo ingresar el resgistro";
             }

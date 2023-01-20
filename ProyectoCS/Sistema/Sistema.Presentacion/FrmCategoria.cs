@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Sistema.Negocio;
+using System;
 using System.Windows.Forms;
-using Sistema.Negocio;
 
 namespace Sistema.Presentacion
 {
@@ -23,6 +16,7 @@ namespace Sistema.Presentacion
             {
                 DgvListado.DataSource = NCategoria.Listar();
                 this.Formato();
+                this.Limpiar();
                 LblTotal.Text = "Total Registros: " + Convert.ToString(DgvListado.Rows.Count);
             }
             catch (Exception ex)
@@ -206,6 +200,7 @@ namespace Sistema.Presentacion
 
         private void DgvListado_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            // Al agregar la columna Selecionar a la lista se genera un error en los index de las otras colunmas, esta parte previene ese error y permite marcar/desmarcar la checkbox que se encuentra en la columna.
             if (e.ColumnIndex == DgvListado.Columns["Seleccionar"].Index)
             {
                 DataGridViewCheckBoxCell ChbEliminar = (DataGridViewCheckBoxCell) DgvListado.Rows[e.RowIndex].Cells["Seleccionar"];
@@ -223,9 +218,9 @@ namespace Sistema.Presentacion
                 {
                     int codigo;
                     string respuesta = "";
-                    foreach (DataGridViewRow row in DgvListado.Rows)
+                    foreach (DataGridViewRow row in DgvListado.Rows) // revisa todas las lineas de la lista
                     {
-                        if (Convert.ToBoolean(row.Cells[0].Value))
+                        if (Convert.ToBoolean(row.Cells[0].Value)) //si esta marcada la celda hacer...
                         {
                             codigo = Convert.ToInt32(row.Cells[1].Value);
                             respuesta = NCategoria.Eliminar(codigo);
@@ -319,6 +314,56 @@ namespace Sistema.Presentacion
             {
                 MessageBox.Show(ex.Message + ex.StackTrace);
             }
+        }
+
+        private void TabGeneral_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TxtBuscar_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TabPage1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tabPage2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TxtId_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TxtNombre_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TxtDescripcion_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LblDescripcion_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LblNombre_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
