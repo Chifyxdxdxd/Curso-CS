@@ -3,3 +3,5 @@ este proyecto esta basado en el curso
 ofrecido por 
 	Juan Carlos Arcila Díaz
 en udemy.
+
+el curso tiene varios detalles que veo inecesarios o que necesité modificar para completar el proyecto.

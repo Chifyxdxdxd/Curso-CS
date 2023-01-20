@@ -129,7 +129,7 @@ namespace Sistema.Datos
                 sqlCon = Conexion.getInstancia().crearConexion();
                 SqlCommand comando = new SqlCommand("articulo_actualizar", sqlCon);
                 comando.CommandType = CommandType.StoredProcedure;
-                comando.Parameters.Add("@idarticulo", SqlDbType.Int).Value = obj.idCategoria;
+                comando.Parameters.Add("@idarticulo", SqlDbType.Int).Value = obj.idArticulo;
                 comando.Parameters.Add("@idcategoria", SqlDbType.Int).Value = obj.idCategoria;
                 comando.Parameters.Add("@codigo", SqlDbType.VarChar).Value = obj.codigo;
                 comando.Parameters.Add("@nombre", SqlDbType.VarChar).Value = obj.nombre;
@@ -152,7 +152,7 @@ namespace Sistema.Datos
             return respuesta;
         }
 
-        public string Eliminar(int id)
+        public string Eliminar(string id)
         {
             string respuesta = "";
             SqlConnection sqlCon = new SqlConnection();
@@ -161,7 +161,7 @@ namespace Sistema.Datos
                 sqlCon = Conexion.getInstancia().crearConexion();
                 SqlCommand comando = new SqlCommand("articulo_eliminar", sqlCon);
                 comando.CommandType = CommandType.StoredProcedure;
-                comando.Parameters.Add("@idcategoria", SqlDbType.Int).Value = id;
+                comando.Parameters.Add("@valor", SqlDbType.VarChar).Value = id;
                 sqlCon.Open();
                 respuesta = comando.ExecuteNonQuery() == 1 ? "OK" : "No se pudo eliminar el resgistro";
             }
@@ -177,7 +177,7 @@ namespace Sistema.Datos
             return respuesta;
         }
 
-        public string Activar(int id)
+        public string Activar(string id)
         {
             string respuesta = "";
             SqlConnection sqlCon = new SqlConnection();
@@ -186,7 +186,7 @@ namespace Sistema.Datos
                 sqlCon = Conexion.getInstancia().crearConexion();
                 SqlCommand comando = new SqlCommand("articulo_activar", sqlCon);
                 comando.CommandType = CommandType.StoredProcedure;
-                comando.Parameters.Add("@idcategoria", SqlDbType.Int).Value = id;
+                comando.Parameters.Add("@valor", SqlDbType.VarChar).Value = id;
                 sqlCon.Open();
                 respuesta = comando.ExecuteNonQuery() == 1 ? "OK" : "No se pudo activar el resgistro";
             }
@@ -202,7 +202,7 @@ namespace Sistema.Datos
             return respuesta;
         }
 
-        public string Desactivar(int id)
+        public string Desactivar(string id)
         {
             string respuesta = "";
             SqlConnection sqlCon = new SqlConnection();
@@ -211,7 +211,7 @@ namespace Sistema.Datos
                 sqlCon = Conexion.getInstancia().crearConexion();
                 SqlCommand comando = new SqlCommand("articulo_desactivar", sqlCon);
                 comando.CommandType = CommandType.StoredProcedure;
-                comando.Parameters.Add("@idcategoria", SqlDbType.Int).Value = id;
+                comando.Parameters.Add("@valor", SqlDbType.VarChar).Value = id;
                 sqlCon.Open();
                 respuesta = comando.ExecuteNonQuery() == 1 ? "OK" : "No se pudo desactivar el resgistro";
             }

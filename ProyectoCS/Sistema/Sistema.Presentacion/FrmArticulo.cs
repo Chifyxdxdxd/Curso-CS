@@ -5,9 +5,11 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using System.Windows.Forms;
 
 namespace Sistema.Presentacion
@@ -77,9 +79,18 @@ namespace Sistema.Presentacion
             TxtId.Clear();
             TxtNombre.Clear();
             TxtBuscar.Clear();
+            TxtCodigo.Clear();
+            PanelCodigo.BackgroundImage = null;
+            BtnGuardarCodigo.Enabled= false;
+            TxtImagen.Clear();
+            TxtPrecioVenta.Clear();
+            TxtStock.Clear();
+            PicImagen.Image= null;
             BtnIngresar.Visible = true;
             BtnActualizar.Visible = false;
             ErrorIcono.Clear();
+            rutaDestino = "";
+            rutaOrigen = "";
 
             DgvListado.Columns[0].Visible = false;
             BtnActivar.Visible = false;
@@ -156,6 +167,263 @@ namespace Sistema.Presentacion
                 imgFinal.Save(dialogoGuardar.FileName, ImageFormat.Png);
             }
             imgFinal.Dispose();
+        }
+
+        private void LblCategoria_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TxtId_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BtnIngresar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string respuesta = "";
+                if (CbxCategoria.Text == String.Empty || TxtNombre.Text == String.Empty || TxtPrecioVenta.Text == String.Empty || TxtStock.Text == String.Empty)
+                {
+                    ErrorIcono.Clear();
+                    this.MensajeError("Falta ingresar agunos datos, serán remarcados.");
+                    if (CbxCategoria.Text == String.Empty) ErrorIcono.SetError(CbxCategoria, "Ingrese una categoría.");
+                    if (TxtNombre.Text == String.Empty) ErrorIcono.SetError(TxtNombre, "Ingrese un nombre.");
+                    if (TxtPrecioVenta.Text == String.Empty) ErrorIcono.SetError(TxtPrecioVenta, "Ingrese el precio de venta.");
+                    if (TxtStock.Text == String.Empty) ErrorIcono.SetError(TxtStock, "Ingrese la cantidad en stock.");
+                }
+                else
+                {
+                    respuesta = NArticulo.Insertar(Convert.ToInt32(CbxCategoria.SelectedValue), TxtCodigo.Text.Trim(), TxtNombre.Text.Trim(), Convert.ToDecimal(TxtPrecioVenta.Text), Convert.ToInt32(TxtStock.Text), TxtDescripcion.Text.Trim(), TxtImagen.Text.Trim());
+                    if (respuesta.Equals("OK"))
+                    {
+                        this.MensajeOk("Se insertó de forma correcta el registro");
+                        if (TxtImagen.Text != String.Empty)
+                        {
+                            this.rutaDestino = this.directorio + TxtImagen.Text;
+                            File.Copy(this.rutaOrigen, this.rutaDestino);
+                        }
+                        this.Limpiar();
+                        this.Listar();
+                    }
+                    else
+                    {
+                        this.MensajeError(respuesta);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + ex.StackTrace);
+            }
+        }
+
+        private void BtnActualizar_Click(object sender, EventArgs e)
+        {
+            string respuesta = "";
+            if (TxtId.Text == String.Empty || CbxCategoria.Text == String.Empty || TxtNombre.Text == String.Empty || TxtPrecioVenta.Text == String.Empty || TxtStock.Text == String.Empty)
+            {
+                ErrorIcono.Clear();
+                this.MensajeError("Falta ingresar agunos datos, serán remarcados.");
+                if (CbxCategoria.Text == String.Empty) ErrorIcono.SetError(CbxCategoria, "Ingrese una categoría.");
+                if (TxtNombre.Text == String.Empty) ErrorIcono.SetError(TxtNombre, "Ingrese un nombre.");
+                if (TxtPrecioVenta.Text == String.Empty) ErrorIcono.SetError(TxtPrecioVenta, "Ingrese el precio de venta.");
+                if (TxtStock.Text == String.Empty) ErrorIcono.SetError(TxtStock, "Ingrese la cantidad en stock.");
+            }
+            else
+            {
+                respuesta = NArticulo.Actualizar(Convert.ToInt32(TxtId.Text), Convert.ToInt32(CbxCategoria.SelectedValue), TxtCodigo.Text.Trim(),  TxtNombre.Text.Trim(), Convert.ToDecimal(TxtPrecioVenta.Text), Convert.ToInt32(TxtStock.Text), TxtDescripcion.Text.Trim(), TxtImagen.Text.Trim());
+                if (respuesta.Equals("OK"))
+                {
+                    this.MensajeOk("Se Actualizó de forma correcta el registro");
+                    if (TxtImagen.Text != string.Empty && this.rutaOrigen != String.Empty)
+                    {
+                        this.rutaDestino = this.directorio + TxtImagen.Text;
+                        File.Copy(this.rutaOrigen, this.rutaDestino);
+                    }
+                    this.Limpiar();
+                    this.Listar();
+                }
+                else
+                {
+                    this.MensajeError(respuesta);
+                }
+            }
+        }
+
+        private void DgvListado_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            string imagen;
+            try
+            {
+                this.Limpiar();
+                BtnActualizar.Visible = true;
+                BtnIngresar.Visible = false;
+                TxtId.Text = Convert.ToString(DgvListado.CurrentRow.Cells["ID"].Value);
+                CbxCategoria.SelectedValue = Convert.ToString(DgvListado.CurrentRow.Cells["idcategoria"].Value);
+                TxtCodigo.Text = Convert.ToString(DgvListado.CurrentRow.Cells["Codigo"].Value);
+                TxtNombre.Text = Convert.ToString(DgvListado.CurrentRow.Cells["Nombre"].Value);
+                TxtPrecioVenta.Text = Convert.ToString(DgvListado.CurrentRow.Cells["Precio_Venta"].Value);
+                TxtStock.Text  = Convert.ToString(DgvListado.CurrentRow.Cells["Stock"].Value);
+                TxtDescripcion.Text = Convert.ToString(DgvListado.CurrentRow.Cells["Descripcion"].Value);
+                imagen = Convert.ToString(DgvListado.CurrentRow.Cells["Imagen"].Value);
+                if (imagen != string.Empty)
+                {
+                    PicImagen.Image = Image.FromFile(this.directorio + imagen);
+                    TxtImagen.Text = imagen;
+                }
+                else
+                {
+                    PicImagen.Image = null;
+                    TxtImagen.Text = "";
+                }
+                TabGeneral.SelectedIndex = 1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Selecione desde la celda nombre." + "| Error: " + ex.Message);
+            }
+        }
+
+        private void BtnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Limpiar();
+            TabGeneral.SelectedIndex = 0;
+        }
+
+        private void ChbSelecionar_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ChbSelecionar.Checked)
+            {
+                DgvListado.Columns[0].Visible = true;
+                BtnActivar.Visible = true;
+                BtnDesactivar.Visible = true;
+                BtnEliminar.Visible = true;
+            }
+            else
+            {
+                DgvListado.Columns[0].Visible = false;
+                BtnActivar.Visible = false;
+                BtnDesactivar.Visible = false;
+                BtnEliminar.Visible = false;
+            }
+        }
+
+        private void DgvListado_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == DgvListado.Columns["Seleccionar"].Index)
+            {
+                DataGridViewCheckBoxCell ChbEliminar = (DataGridViewCheckBoxCell)DgvListado.Rows[e.RowIndex].Cells["Seleccionar"];
+                ChbEliminar.Value = !Convert.ToBoolean(ChbEliminar.Value);
+            }
+        }
+
+        private void BtnEliminar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DialogResult opcion;
+                opcion = MessageBox.Show("Realmente deseas eliminar el(los) registro(s)?", "Sistema de ventas", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                if (opcion == DialogResult.OK)
+                {
+                    string codigo, respuesta = "", imagen = "";
+                    foreach (DataGridViewRow row in DgvListado.Rows) // revisa todas las lineas de la lista
+                    {
+                        if (Convert.ToBoolean(row.Cells[0].Value)) //si esta marcada la celda hacer...
+                        {
+                            codigo = Convert.ToString(row.Cells[5].Value);
+                            imagen = Convert.ToString(row.Cells[9].Value);
+                            respuesta = NArticulo.Eliminar(codigo);
+
+                            if (respuesta == "OK")
+                            {
+                                this.MensajeOk("Se eliminó el registro: " + Convert.ToString(row.Cells[9].Value));
+                                File.Delete(this.directorio + imagen);
+                            }
+                            else
+                            {
+                                this.MensajeError(respuesta);
+                            }
+                        }
+                    }
+                }
+                this.Listar();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + ex.StackTrace);
+            }
+        }
+
+        private void BtnDesactivar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DialogResult opcion;
+                opcion = MessageBox.Show("Realmente deseas desactivar el(los) registro(s)?", "Sistema de ventas", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                if (opcion == DialogResult.OK)
+                {
+                    string codigo, respuesta = "";
+                    foreach (DataGridViewRow row in DgvListado.Rows) // revisa todas las lineas de la lista
+                    {
+                        if (Convert.ToBoolean(row.Cells[0].Value)) //si esta marcada la celda hacer...
+                        {
+                            codigo = Convert.ToString(row.Cells[5].Value);
+                            respuesta = NArticulo.Desactivar(codigo);
+
+                            if (respuesta == "OK")
+                            {
+                                this.MensajeOk("Se desactivó el registro: " + codigo);
+                            }
+                            else
+                            {
+                                this.MensajeError(respuesta);
+                            }
+                        }
+                    }
+                }
+                this.Listar();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + ex.StackTrace);
+            }
+        }
+
+        private void BtnActivar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DialogResult opcion;
+                opcion = MessageBox.Show("Realmente deseas activar el(los) registro(s)?", "Sistema de ventas", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                if (opcion == DialogResult.OK)
+                {
+                    string codigo, respuesta = "";
+                    foreach (DataGridViewRow row in DgvListado.Rows) // revisa todas las lineas de la lista
+                    {
+                        if (Convert.ToBoolean(row.Cells[0].Value)) //si esta marcada la celda hacer...
+                        {
+                            codigo = Convert.ToString(row.Cells[5].Value);
+                            respuesta = NArticulo.Activar(codigo);
+
+                            if (respuesta == "OK")
+                            {
+                                this.MensajeOk("Se desactivó el registro: " + codigo);
+                            }
+                            else
+                            {
+                                this.MensajeError(respuesta);
+                            }
+                        }
+                    }
+                }
+                this.Listar();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + ex.StackTrace);
+            }
         }
 
         private void FrmArticulo_Load(object sender, EventArgs e)
