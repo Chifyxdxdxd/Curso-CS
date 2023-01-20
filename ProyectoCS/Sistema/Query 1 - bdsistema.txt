@@ -32,7 +32,7 @@ create table persona (
 	nombre varchar(100) not null,
 	tipo_documento varchar(20) null,
 	num_documento varchar(20) null,
-	dirección varchar(70) null,
+	direccion varchar(150) null,
 	telefono varchar(20) null,
 	email varchar(50) null,
 );
@@ -54,7 +54,7 @@ create table usuario (
 	nombre varchar(100) not null,
 	tipo_documento varchar(20) null,
 	num_documento varchar(20) null,
-	dirección varchar(70) null,
+	direccion varchar(150) null,
 	telefono varchar(20) null,
 	email varchar(50) null,
 	clave varbinary(MAX) not null,

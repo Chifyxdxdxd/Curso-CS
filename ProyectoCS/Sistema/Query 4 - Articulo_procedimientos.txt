@@ -30,7 +30,7 @@ create proc articulo_insertar
 @precio_venta decimal(11,2),
 @stock integer,
 @descripcion varchar(255),
-@imagen varchar(20)
+@imagen varchar(255)
 as
 insert into articulo (idcategoria,codigo,nombre,precio_venta,stock,descripcion,imagen)
 values (@idcategoria,@codigo,@nombre,@precio_venta,@stock,@descripcion,@imagen)
@@ -45,7 +45,7 @@ create proc articulo_actualizar
 @precio_venta decimal(11,2),
 @stock integer,
 @descripcion varchar(255),
-@imagen varchar(20)
+@imagen varchar(255)
 as
 update articulo set idcategoria=@idcategoria,codigo=@codigo,
 nombre=@nombre,precio_venta=@precio_venta,stock=@stock,
@@ -55,26 +55,26 @@ go
 
 --Procedimiento Eliminar
 create proc articulo_eliminar
-@idarticulo integer
+@valor varchar(50)
 as
 delete from articulo
-where idarticulo=@idarticulo
+where nombre=@valor
 go
 
 --Procedimiento Desactivar
 create proc articulo_desactivar
-@idarticulo integer
+@valor varchar(50)
 as
 update articulo set estado=0
-where idarticulo=@idarticulo
+where nombre=@valor
 go
 
 --Procedimiento Activar
 create proc articulo_activar
-@idarticulo integer
+@valor varchar(50)
 as
 update articulo set estado=1
-where idarticulo=@idarticulo
+where nombre=@valor
 go
 
 -- Procedimiento existe
