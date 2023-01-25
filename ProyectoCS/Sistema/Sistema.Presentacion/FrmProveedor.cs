@@ -1,18 +1,13 @@
 ﻿using Sistema.Negocio;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Sistema.Presentacion
 {
     public partial class FrmProveedor : Form
     {
+        private string nombreAnt;
+
         public FrmProveedor()
         {
             InitializeComponent();
@@ -74,7 +69,6 @@ namespace Sistema.Presentacion
             TxtDireccion.Clear();
             TxtTelefono.Clear();
             TxtEmail.Clear();
-            TxtClave.Clear();
             BtnInsertar.Visible = true;
             BtnActualizar.Visible = false;
             ErrorIcono.Clear();
@@ -96,12 +90,167 @@ namespace Sistema.Presentacion
 
         private void BtnBuscar_Click(object sender, EventArgs e)
         {
-
+            this.Buscar();
         }
 
         private void FrmPersona_Load(object sender, EventArgs e)
         {
             this.Listar();
+        }
+
+        private void BtnInsertar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string respuesta = "";
+                if (TxtNombre.Text == string.Empty)
+                {
+                    this.MensajeError("Falta ingresar algunos datos, serán remarcados.");
+                    ErrorIcono.SetError(TxtNombre, "Ingrese un nombre.");
+                }
+                else
+                {
+                    respuesta = NPersona.Insertar("Proveedor",TxtNombre.Text.Trim(), CboTipoDocumento.Text, TxtNumDocumento.Text.Trim(), TxtDireccion.Text.Trim(), TxtTelefono.Text.Trim(), TxtEmail.Text.Trim());
+                    if (respuesta.Equals("OK"))
+                    {
+                        this.MensajeOk("Se insertó de forma correcta el registro");
+                        this.Limpiar();
+                        this.Listar();
+                    }
+                    else
+                    {
+                        this.MensajeError(respuesta);
+                    }
+                    TabGeneral.SelectedIndex = 0;
+                    Listar();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + ex.StackTrace);
+            }
+        }
+
+        private void DgvListado_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                this.Limpiar();
+                BtnActualizar.Visible = true;
+                BtnInsertar.Visible = false;
+                TxtId.Text = Convert.ToString(DgvListado.CurrentRow.Cells[1].Value);
+                this.nombreAnt = Convert.ToString(DgvListado.CurrentRow.Cells[3].Value);
+                TxtNombre.Text = Convert.ToString(DgvListado.CurrentRow.Cells[3].Value);
+                CboTipoDocumento.Text = Convert.ToString(DgvListado.CurrentRow.Cells[4].Value);
+                TxtNumDocumento.Text = Convert.ToString(DgvListado.CurrentRow.Cells[5].Value);
+                TxtDireccion.Text = Convert.ToString(DgvListado.CurrentRow.Cells[6].Value);
+                TxtTelefono.Text = Convert.ToString(DgvListado.CurrentRow.Cells[7].Value);
+                TxtEmail.Text = Convert.ToString(DgvListado.CurrentRow.Cells[8].Value);
+                TabGeneral.SelectedIndex = 1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Seleccione desde una celda nombre.", "| Error:" + ex.Message);
+            }
+        }
+
+        private void BtnActualizar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string respuesta = "";
+                if (TxtId.Text == String.Empty || TxtNombre.Text == String.Empty)
+                {
+                    this.MensajeError("Falta ingresar algunos datos, serán remarcados.");
+                    ErrorIcono.SetError(TxtNombre, "Ingrese un nombre.");
+                }
+                else
+                {
+                    respuesta = NPersona.Actualizar(Convert.ToInt32(TxtId.Text),"Proveedor", this.nombreAnt, TxtNombre.Text.Trim(), CboTipoDocumento.Text, TxtNumDocumento.Text.Trim(), TxtDireccion.Text.Trim(), TxtTelefono.Text.Trim(), TxtEmail.Text.Trim());
+                    if (respuesta.Equals("OK"))
+                    {
+                        this.MensajeOk("Se insertó de forma correcta el registro");
+                        this.Limpiar();
+                        this.Listar();
+                    }
+                    else
+                    {
+                        this.MensajeError(respuesta);
+                    }
+                    TabGeneral.SelectedIndex = 0;
+                    Listar();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + ex.StackTrace);
+            }
+        }
+
+        private void BtnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Limpiar();
+            TabGeneral.SelectedIndex = 0;
+        }
+
+        private void ChkSeleccionar_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ChkSeleccionar.Checked)
+            {
+                DgvListado.Columns[0].Visible = true;
+                BtnEliminar.Visible = true;
+            }
+            else
+            {
+                DgvListado.Columns[0].Visible = false;
+                BtnEliminar.Visible = false;
+            }
+        }
+
+        private void DgvListado_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == DgvListado.Columns["Seleccionar"].Index)
+            {
+                DataGridViewCheckBoxCell ChkEliminar = (DataGridViewCheckBoxCell)DgvListado.Rows[e.RowIndex].Cells["Seleccionar"];
+                ChkEliminar.Value = !Convert.ToBoolean(ChkEliminar.Value);
+            }
+        }
+
+        private void BtnEliminar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DialogResult Opcion;
+                Opcion = MessageBox.Show("Realmente deseas eliminar el(los) registro(s)?", "Sistema de ventas", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                if (Opcion == DialogResult.OK)
+                {
+                    int Codigo;
+                    string Rpta = "";
+
+                    foreach (DataGridViewRow row in DgvListado.Rows)
+                    {
+                        if (Convert.ToBoolean(row.Cells[0].Value))
+                        {
+                            Codigo = Convert.ToInt32(row.Cells[1].Value);
+                            Rpta = NPersona.Eliminar(Codigo);
+
+                            if (Rpta.Equals("OK"))
+                            {
+                                this.MensajeOk("Se eliminó el registro: " + Convert.ToString(row.Cells[4].Value));
+                            }
+                            else
+                            {
+                                this.MensajeError(Rpta);
+                            }
+                        }
+                    }
+                    this.Listar();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + ex.StackTrace);
+            }
         }
     }
 }

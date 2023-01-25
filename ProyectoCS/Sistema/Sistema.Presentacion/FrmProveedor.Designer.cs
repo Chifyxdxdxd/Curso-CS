@@ -39,11 +39,7 @@
             this.Seleccionar = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.TabGeneral = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.TxtClave = new System.Windows.Forms.TextBox();
             this.TxtEmail = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.TxtTelefono = new System.Windows.Forms.TextBox();
             this.TxtDireccion = new System.Windows.Forms.TextBox();
@@ -52,8 +48,6 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.CboRol = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.BtnActualizar = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.BtnCancelar = new System.Windows.Forms.Button();
@@ -67,7 +61,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.DgvListado)).BeginInit();
             this.TabGeneral.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ErrorIcono)).BeginInit();
             this.SuspendLayout();
             // 
@@ -80,6 +73,7 @@
             this.BtnEliminar.TabIndex = 7;
             this.BtnEliminar.Text = "Eliminar";
             this.BtnEliminar.UseVisualStyleBackColor = true;
+            this.BtnEliminar.Click += new System.EventHandler(this.BtnEliminar_Click);
             // 
             // BtnBuscar
             // 
@@ -119,6 +113,7 @@
             this.ChkSeleccionar.TabIndex = 4;
             this.ChkSeleccionar.Text = "Seleccionar";
             this.ChkSeleccionar.UseVisualStyleBackColor = true;
+            this.ChkSeleccionar.CheckedChanged += new System.EventHandler(this.ChkSeleccionar_CheckedChanged);
             // 
             // TxtBuscar
             // 
@@ -154,6 +149,8 @@
             this.DgvListado.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DgvListado.Size = new System.Drawing.Size(902, 340);
             this.DgvListado.TabIndex = 0;
+            this.DgvListado.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvListado_CellContentClick);
+            this.DgvListado.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvListado_CellDoubleClick);
             // 
             // Seleccionar
             // 
@@ -174,22 +171,21 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.groupBox1);
+            this.tabPage2.Controls.Add(this.TxtNombre);
+            this.tabPage2.Controls.Add(this.TxtEmail);
             this.tabPage2.Controls.Add(this.TxtTelefono);
             this.tabPage2.Controls.Add(this.TxtDireccion);
             this.tabPage2.Controls.Add(this.TxtNumDocumento);
+            this.tabPage2.Controls.Add(this.label8);
             this.tabPage2.Controls.Add(this.CboTipoDocumento);
             this.tabPage2.Controls.Add(this.label7);
             this.tabPage2.Controls.Add(this.label6);
             this.tabPage2.Controls.Add(this.label5);
-            this.tabPage2.Controls.Add(this.CboRol);
-            this.tabPage2.Controls.Add(this.label4);
             this.tabPage2.Controls.Add(this.BtnActualizar);
             this.tabPage2.Controls.Add(this.label3);
             this.tabPage2.Controls.Add(this.BtnCancelar);
             this.tabPage2.Controls.Add(this.BtnInsertar);
             this.tabPage2.Controls.Add(this.TxtId);
-            this.tabPage2.Controls.Add(this.TxtNombre);
             this.tabPage2.Controls.Add(this.label2);
             this.tabPage2.Controls.Add(this.label1);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
@@ -201,72 +197,27 @@
             this.tabPage2.Text = "Mantenimiento";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.TxtClave);
-            this.groupBox1.Controls.Add(this.TxtEmail);
-            this.groupBox1.Controls.Add(this.label10);
-            this.groupBox1.Controls.Add(this.label9);
-            this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Location = new System.Drawing.Point(504, 67);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Size = new System.Drawing.Size(394, 269);
-            this.groupBox1.TabIndex = 18;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Acceso";
-            // 
-            // TxtClave
-            // 
-            this.TxtClave.Location = new System.Drawing.Point(90, 106);
-            this.TxtClave.Margin = new System.Windows.Forms.Padding(2);
-            this.TxtClave.Name = "TxtClave";
-            this.TxtClave.Size = new System.Drawing.Size(220, 20);
-            this.TxtClave.TabIndex = 4;
-            // 
             // TxtEmail
             // 
-            this.TxtEmail.Location = new System.Drawing.Point(90, 57);
+            this.TxtEmail.Location = new System.Drawing.Point(170, 297);
             this.TxtEmail.Margin = new System.Windows.Forms.Padding(2);
             this.TxtEmail.Name = "TxtEmail";
             this.TxtEmail.Size = new System.Drawing.Size(220, 20);
             this.TxtEmail.TabIndex = 3;
             // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(20, 167);
-            this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(359, 26);
-            this.label10.TabIndex = 2;
-            this.label10.Text = "A: Para insertar un usuario la clave es obligatoria.\r\nPara actualizar deje en bla" +
-    "nco el campo clave y la clave no se actualizará.\r\n";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(18, 106);
-            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(50, 13);
-            this.label9.TabIndex = 1;
-            this.label9.Text = "Clave (A)";
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(16, 57);
+            this.label8.Location = new System.Drawing.Point(50, 300);
             this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(45, 13);
+            this.label8.Size = new System.Drawing.Size(35, 13);
             this.label8.TabIndex = 0;
-            this.label8.Text = "Email (*)";
+            this.label8.Text = "Email ";
             // 
             // TxtTelefono
             // 
-            this.TxtTelefono.Location = new System.Drawing.Point(166, 258);
+            this.TxtTelefono.Location = new System.Drawing.Point(170, 247);
             this.TxtTelefono.Margin = new System.Windows.Forms.Padding(2);
             this.TxtTelefono.Name = "TxtTelefono";
             this.TxtTelefono.Size = new System.Drawing.Size(144, 20);
@@ -274,7 +225,7 @@
             // 
             // TxtDireccion
             // 
-            this.TxtDireccion.Location = new System.Drawing.Point(166, 222);
+            this.TxtDireccion.Location = new System.Drawing.Point(170, 197);
             this.TxtDireccion.Margin = new System.Windows.Forms.Padding(2);
             this.TxtDireccion.Name = "TxtDireccion";
             this.TxtDireccion.Size = new System.Drawing.Size(281, 20);
@@ -282,7 +233,7 @@
             // 
             // TxtNumDocumento
             // 
-            this.TxtNumDocumento.Location = new System.Drawing.Point(166, 184);
+            this.TxtNumDocumento.Location = new System.Drawing.Point(170, 147);
             this.TxtNumDocumento.Margin = new System.Windows.Forms.Padding(2);
             this.TxtNumDocumento.Name = "TxtNumDocumento";
             this.TxtNumDocumento.Size = new System.Drawing.Size(144, 20);
@@ -296,7 +247,7 @@
             "RUC",
             "CEDULA",
             "PASAPORTE"});
-            this.CboTipoDocumento.Location = new System.Drawing.Point(166, 144);
+            this.CboTipoDocumento.Location = new System.Drawing.Point(170, 97);
             this.CboTipoDocumento.Margin = new System.Windows.Forms.Padding(2);
             this.CboTipoDocumento.Name = "CboTipoDocumento";
             this.CboTipoDocumento.Size = new System.Drawing.Size(144, 21);
@@ -306,7 +257,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(48, 222);
+            this.label7.Location = new System.Drawing.Point(50, 200);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(52, 13);
@@ -316,7 +267,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(48, 184);
+            this.label6.Location = new System.Drawing.Point(50, 150);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(102, 13);
@@ -326,31 +277,12 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(46, 144);
+            this.label5.Location = new System.Drawing.Point(50, 100);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(86, 13);
             this.label5.TabIndex = 11;
             this.label5.Text = "Tipo Documento";
-            // 
-            // CboRol
-            // 
-            this.CboRol.FormattingEnabled = true;
-            this.CboRol.Location = new System.Drawing.Point(166, 67);
-            this.CboRol.Margin = new System.Windows.Forms.Padding(2);
-            this.CboRol.Name = "CboRol";
-            this.CboRol.Size = new System.Drawing.Size(267, 21);
-            this.CboRol.TabIndex = 10;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(46, 67);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(36, 13);
-            this.label4.TabIndex = 9;
-            this.label4.Text = "Rol (*)";
             // 
             // BtnActualizar
             // 
@@ -361,6 +293,7 @@
             this.BtnActualizar.TabIndex = 8;
             this.BtnActualizar.Text = "Actualizar";
             this.BtnActualizar.UseVisualStyleBackColor = true;
+            this.BtnActualizar.Click += new System.EventHandler(this.BtnActualizar_Click);
             // 
             // label3
             // 
@@ -381,6 +314,7 @@
             this.BtnCancelar.TabIndex = 6;
             this.BtnCancelar.Text = "Cancelar";
             this.BtnCancelar.UseVisualStyleBackColor = true;
+            this.BtnCancelar.Click += new System.EventHandler(this.BtnCancelar_Click);
             // 
             // BtnInsertar
             // 
@@ -391,6 +325,7 @@
             this.BtnInsertar.TabIndex = 5;
             this.BtnInsertar.Text = "Insertar";
             this.BtnInsertar.UseVisualStyleBackColor = true;
+            this.BtnInsertar.Click += new System.EventHandler(this.BtnInsertar_Click);
             // 
             // TxtId
             // 
@@ -403,7 +338,7 @@
             // 
             // TxtNombre
             // 
-            this.TxtNombre.Location = new System.Drawing.Point(166, 104);
+            this.TxtNombre.Location = new System.Drawing.Point(170, 44);
             this.TxtNombre.Margin = new System.Windows.Forms.Padding(2);
             this.TxtNombre.Name = "TxtNombre";
             this.TxtNombre.Size = new System.Drawing.Size(281, 20);
@@ -412,7 +347,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(48, 258);
+            this.label2.Location = new System.Drawing.Point(50, 250);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(49, 13);
@@ -422,7 +357,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(46, 104);
+            this.label1.Location = new System.Drawing.Point(50, 47);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(57, 13);
@@ -448,8 +383,6 @@
             this.TabGeneral.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ErrorIcono)).EndInit();
             this.ResumeLayout(false);
 
@@ -467,11 +400,7 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn Seleccionar;
         private System.Windows.Forms.TabControl TabGeneral;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox TxtClave;
         private System.Windows.Forms.TextBox TxtEmail;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox TxtTelefono;
         private System.Windows.Forms.TextBox TxtDireccion;
@@ -480,8 +409,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox CboRol;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button BtnActualizar;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button BtnCancelar;
