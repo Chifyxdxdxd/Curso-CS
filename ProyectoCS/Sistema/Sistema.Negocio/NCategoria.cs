@@ -49,9 +49,9 @@ namespace Sistema.Negocio
             DCategoria datos = new DCategoria();
             string existe = datos.Existe(nombre);
 
-            if (existe.Equals("0"))
+            if (existe.Equals("1"))
             {
-                return "La categoría no existe";
+                return "La categoría ya existe";
             }
             else
             {

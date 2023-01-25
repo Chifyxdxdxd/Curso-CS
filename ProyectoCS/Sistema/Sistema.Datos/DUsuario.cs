@@ -14,7 +14,7 @@ namespace Sistema.Datos
             SqlConnection SqlCon = new SqlConnection();
             try
             {
-                SqlCon = Conexion.getInstancia().CrearConexion();
+                SqlCon = Conexion.getInstancia().crearConexion();
                 SqlCommand Comando = new SqlCommand("usuario_listar", SqlCon);
                 Comando.CommandType = CommandType.StoredProcedure;
                 SqlCon.Open();
@@ -39,7 +39,7 @@ namespace Sistema.Datos
             SqlConnection SqlCon = new SqlConnection();
             try
             {
-                SqlCon = Conexion.getInstancia().CrearConexion();
+                SqlCon = Conexion.getInstancia().crearConexion();
                 SqlCommand Comando = new SqlCommand("usuario_buscar", SqlCon);
                 Comando.CommandType = CommandType.StoredProcedure;
                 Comando.Parameters.Add("@valor", SqlDbType.VarChar).Value = Valor;
@@ -64,7 +64,7 @@ namespace Sistema.Datos
             SqlConnection SqlCon = new SqlConnection();
             try
             {
-                SqlCon = Conexion.getInstancia().CrearConexion();
+                SqlCon = Conexion.getInstancia().crearConexion();
                 SqlCommand Comando = new SqlCommand("usuario_existe", SqlCon);
                 Comando.CommandType = CommandType.StoredProcedure;
                 Comando.Parameters.Add("@valor", SqlDbType.VarChar).Value = Valor;
@@ -94,7 +94,7 @@ namespace Sistema.Datos
             SqlConnection SqlCon = new SqlConnection();
             try
             {
-                SqlCon = Conexion.getInstancia().CrearConexion();
+                SqlCon = Conexion.getInstancia().crearConexion();
                 SqlCommand Comando = new SqlCommand("usuario_insertar", SqlCon);
                 Comando.CommandType = CommandType.StoredProcedure;
                 Comando.Parameters.Add("@idrol", SqlDbType.Int).Value = Obj.IdRol;
@@ -125,7 +125,7 @@ namespace Sistema.Datos
             SqlConnection SqlCon = new SqlConnection();
             try
             {
-                SqlCon = Conexion.getInstancia().CrearConexion();
+                SqlCon = Conexion.getInstancia().crearConexion();
                 SqlCommand Comando = new SqlCommand("usuario_actualizar", SqlCon);
                 Comando.CommandType = CommandType.StoredProcedure;
                 Comando.Parameters.Add("@idusuario", SqlDbType.Int).Value = Obj.IdUsuario;
@@ -157,7 +157,7 @@ namespace Sistema.Datos
             SqlConnection SqlCon = new SqlConnection();
             try
             {
-                SqlCon = Conexion.getInstancia().CrearConexion();
+                SqlCon = Conexion.getInstancia().crearConexion();
                 SqlCommand Comando = new SqlCommand("usuario_eliminar", SqlCon);
                 Comando.CommandType = CommandType.StoredProcedure;
                 Comando.Parameters.Add("@idusuario", SqlDbType.Int).Value = Id;
@@ -181,7 +181,7 @@ namespace Sistema.Datos
             SqlConnection SqlCon = new SqlConnection();
             try
             {
-                SqlCon = Conexion.getInstancia().CrearConexion();
+                SqlCon = Conexion.getInstancia().crearConexion();
                 SqlCommand Comando = new SqlCommand("usuario_activar", SqlCon);
                 Comando.CommandType = CommandType.StoredProcedure;
                 Comando.Parameters.Add("@idusuario", SqlDbType.Int).Value = Id;
@@ -205,7 +205,7 @@ namespace Sistema.Datos
             SqlConnection SqlCon = new SqlConnection();
             try
             {
-                SqlCon = Conexion.getInstancia().CrearConexion();
+                SqlCon = Conexion.getInstancia().crearConexion();
                 SqlCommand Comando = new SqlCommand("usuario_desactivar", SqlCon);
                 Comando.CommandType = CommandType.StoredProcedure;
                 Comando.Parameters.Add("@idusuario", SqlDbType.Int).Value = Id;
