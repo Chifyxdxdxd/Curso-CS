@@ -56,7 +56,7 @@ create table usuario (
 	num_documento varchar(20) null,
 	direccion varchar(150) null,
 	telefono varchar(20) null,
-	email varchar(50) null,
+	email varchar(100) null,
 	clave varbinary(MAX) not null,
 	estado bit default (1),
 	FOREIGN KEY (idrol) REFERENCES rol(idrol)
