@@ -13,6 +13,10 @@ namespace Sistema.Presentacion
     public partial class FrmPrincipal : Form
     {
         private int childFormNumber = 0;
+        public int idUsuario, idRol;
+        public string nombre, rol;
+        public bool estado;
+
 
         public FrmPrincipal()
         {
@@ -136,6 +140,11 @@ namespace Sistema.Presentacion
             FrmArticulo frm = new FrmArticulo();
             frm.MdiParent = this;
             frm.Show();
+        }
+
+        private void salirToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
 
         private void rolesToolStripMenuItem_Click(object sender, EventArgs e)
