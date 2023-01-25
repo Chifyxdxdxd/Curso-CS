@@ -4,11 +4,11 @@ using System.Windows.Forms;
 
 namespace Sistema.Presentacion
 {
-    public partial class FrmProveedor : Form
+    public partial class FrmCliente : Form
     {
         private string nombreAnt;
 
-        public FrmProveedor()
+        public FrmCliente()
         {
             InitializeComponent();
         }
@@ -17,7 +17,7 @@ namespace Sistema.Presentacion
         {
             try
             {
-                DgvListado.DataSource = NPersona.ListarProveedores();
+                DgvListado.DataSource = NPersona.ListarClientes();
                 this.Formato();
                 this.Limpiar();
                 LblTotal.Text = "Total registros: " + Convert.ToString(DgvListado.Rows.Count);
@@ -32,7 +32,7 @@ namespace Sistema.Presentacion
         {
             try
             {
-                DgvListado.DataSource = NPersona.BuscarProveedores(TxtBuscar.Text);
+                DgvListado.DataSource = NPersona.BuscarClientes(TxtBuscar.Text);
                 this.Formato();
                 LblTotal.Text = "Total registros: " + Convert.ToString(DgvListado.Rows.Count);
             }
@@ -110,7 +110,7 @@ namespace Sistema.Presentacion
                 }
                 else
                 {
-                    respuesta = NPersona.Insertar("Proveedor",TxtNombre.Text.Trim(), CboTipoDocumento.Text, TxtNumDocumento.Text.Trim(), TxtDireccion.Text.Trim(), TxtTelefono.Text.Trim(), TxtEmail.Text.Trim());
+                    respuesta = NPersona.Insertar("Cliente",TxtNombre.Text.Trim(), CboTipoDocumento.Text, TxtNumDocumento.Text.Trim(), TxtDireccion.Text.Trim(), TxtTelefono.Text.Trim(), TxtEmail.Text.Trim());
                     if (respuesta.Equals("OK"))
                     {
                         this.MensajeOk("Se insertó de forma correcta el registro");
@@ -166,7 +166,7 @@ namespace Sistema.Presentacion
                 }
                 else
                 {
-                    respuesta = NPersona.Actualizar(Convert.ToInt32(TxtId.Text),"Proveedor", this.nombreAnt, TxtNombre.Text.Trim(), CboTipoDocumento.Text, TxtNumDocumento.Text.Trim(), TxtDireccion.Text.Trim(), TxtTelefono.Text.Trim(), TxtEmail.Text.Trim());
+                    respuesta = NPersona.Actualizar(Convert.ToInt32(TxtId.Text),"Cliente", this.nombreAnt, TxtNombre.Text.Trim(), CboTipoDocumento.Text, TxtNumDocumento.Text.Trim(), TxtDireccion.Text.Trim(), TxtTelefono.Text.Trim(), TxtEmail.Text.Trim());
                     if (respuesta.Equals("OK"))
                     {
                         this.MensajeOk("Se insertó de forma correcta el registro");
@@ -251,6 +251,11 @@ namespace Sistema.Presentacion
             {
                 MessageBox.Show(ex.Message + ex.StackTrace);
             }
+        }
+
+        private void FrmCliente_Load(object sender, EventArgs e)
+        {
+            this.Listar();
         }
     }
 }
