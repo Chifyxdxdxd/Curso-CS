@@ -20,10 +20,7 @@ create table articulo(
 	estado bit default (1),
 	FOREIGN KEY (idcategoria) REFERENCES categoria(idcategoria)
 );
-go
-
--- FOREIGN KEY () REFERENCES ()
--- id integer primary key identity,
+g
 
 --Tabla persona
 create table persona (
@@ -34,7 +31,7 @@ create table persona (
 	num_documento varchar(20) null,
 	direccion varchar(150) null,
 	telefono varchar(20) null,
-	email varchar(50) null,
+	email varchar(100) null,
 );
 go
 

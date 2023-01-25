@@ -163,7 +163,9 @@ namespace Sistema.Presentacion
 
         private void clienteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            FrmCliente frm = new FrmCliente();
+            frm.MdiParent = this;
+            frm.Show();
         }
 
         private void toolStripButton1_Click(object sender, EventArgs e)
@@ -199,6 +201,13 @@ namespace Sistema.Presentacion
                 Application.Exit();
             }
             
+        }
+
+        private void proveedoresToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmProveedor frm= new FrmProveedor();
+            frm.MdiParent = this;
+            frm.Show();
         }
 
         private void rolesToolStripMenuItem_Click(object sender, EventArgs e)
