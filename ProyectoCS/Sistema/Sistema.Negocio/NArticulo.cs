@@ -46,17 +46,26 @@ namespace Sistema.Negocio
         public static string Actualizar(int id, int idCategoria, string codigo, string nombre, decimal precioVenta, int stock, string descripcion, string imagen)
         {
             DArticulo datos = new DArticulo();
+            string existe = datos.Existe(nombre);
 
-            Articulo obj = new Articulo();
-            obj.idArticulo = id;
-            obj.idCategoria = idCategoria;
-            obj.codigo = codigo;
-            obj.nombre = nombre;
-            obj.precioVenta = precioVenta;
-            obj.stock = stock;
-            obj.descripcion = descripcion;
-            obj.imagen = imagen;
-            return datos.Actualizar(obj);
+            if (existe.Equals("1"))
+            {
+                return "El usuario con ese email ya existe.";
+            }
+            else
+            {
+                Articulo obj = new Articulo();
+                obj.idArticulo = id;
+                obj.idCategoria = idCategoria;
+                obj.codigo = codigo;
+                obj.nombre = nombre;
+                obj.precioVenta = precioVenta;
+                obj.stock = stock;
+                obj.descripcion = descripcion;
+                obj.imagen = imagen;
+                return datos.Actualizar(obj);
+            }
+            
         }
 
         public static string Eliminar(string id)

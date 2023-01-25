@@ -38,3 +38,5 @@ C:\Users\Santiago Rojas\Documents\GitHub\Curso-CS\ProyectoCS\Sistema\Sistema.Pre
 C:\Users\Santiago Rojas\Documents\GitHub\Curso-CS\ProyectoCS\Sistema\Sistema.Presentacion\bin\Debug\System.Text.Json.xml
 C:\Users\Santiago Rojas\Documents\GitHub\Curso-CS\ProyectoCS\Sistema\Sistema.Presentacion\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\Users\Santiago Rojas\Documents\GitHub\Curso-CS\ProyectoCS\Sistema\Sistema.Presentacion\bin\Debug\System.ValueTuple.xml
+C:\Users\Santiago Rojas\Documents\GitHub\Curso-CS\ProyectoCS\Sistema\Sistema.Presentacion\obj\Debug\Sistema.Presentacion.FrmRol.resources
+C:\Users\Santiago Rojas\Documents\GitHub\Curso-CS\ProyectoCS\Sistema\Sistema.Presentacion\obj\Debug\Sistema.Presentacion.FrmUsuario.resources
