@@ -5,3 +5,5 @@ ofrecido por
 en udemy.
 
 el curso tiene varios detalles que veo inecesarios o que necesité modificar para completar el proyecto.
+
+No terminé el proyecto tal cual lo plantea el curso ya que la mayoría es copiar y pegar el código que ya se ha realizado, para dedicar mi tiempo en proyectos nuevos lo dejaré de esta manera y consitero este terminado. El CRUD en diferentes ventanas funciona.
