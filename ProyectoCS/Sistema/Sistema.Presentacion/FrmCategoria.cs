@@ -29,7 +29,7 @@ namespace Sistema.Presentacion
         {
             try
             {
-                DgvListado.DataSource = NCategoria.Buscar(BtnBuscar.Text);
+                DgvListado.DataSource = NCategoria.Buscar(TxtBuscar.Text);
                 this.Formato();
                 LblTotal.Text = "Total Registros: " + Convert.ToString(DgvListado.Rows.Count);
             }

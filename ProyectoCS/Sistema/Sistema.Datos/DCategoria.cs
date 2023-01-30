@@ -16,6 +16,7 @@ namespace Sistema.Datos
             {
                 sqlCon = Conexion.getInstancia().crearConexion();
                 SqlCommand comando = new SqlCommand("categoria_listar", sqlCon);
+                comando.CommandType = CommandType.StoredProcedure;
                 sqlCon.Open();
                 resultado =  comando.ExecuteReader();
                 tabla.Load(resultado);
@@ -41,6 +42,7 @@ namespace Sistema.Datos
             {
                 sqlCon = Conexion.getInstancia().crearConexion();
                 SqlCommand comando = new SqlCommand("categoria_buscar", sqlCon);
+                comando.CommandType = CommandType.StoredProcedure;
                 comando.Parameters.Add("@valor", SqlDbType.VarChar).Value = val;
                 sqlCon.Open();
                 resultado = comando.ExecuteReader();
