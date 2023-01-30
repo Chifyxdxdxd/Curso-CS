@@ -43,7 +43,7 @@ namespace Sistema.Presentacion
         {
             try
             {
-                DgvListado.DataSource = NArticulo.Buscar(BtnBuscar.Text);
+                DgvListado.DataSource = NArticulo.Buscar(TxtBuscar.Text);
                 this.Formato();
                 LblTotal.Text = "Total Registros: " + Convert.ToString(DgvListado.Rows.Count);
             }

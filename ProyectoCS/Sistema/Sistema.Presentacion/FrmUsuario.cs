@@ -126,7 +126,7 @@ namespace Sistema.Presentacion
                 string Rpta = "";
                 if (CboRol.Text == string.Empty || TxtNombre.Text == string.Empty || TxtEmail.Text ==string.Empty || TxtClave.Text == string.Empty)
                 {
-                    this.MensajeError("Falta ingresar algunos datos, serán remarcados.");
+                    this.MensajeError("Los datos remarcados son obligatorios.");
                     ErrorIcono.SetError(CboRol,"Seleccione un rol.");
                     ErrorIcono.SetError(TxtNombre, "Ingrese un nombre.");
                     ErrorIcono.SetError(TxtEmail,"Ingrese un email.");

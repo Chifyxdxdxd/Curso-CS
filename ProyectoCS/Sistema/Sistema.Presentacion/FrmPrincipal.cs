@@ -13,6 +13,10 @@ namespace Sistema.Presentacion
     public partial class FrmPrincipal : Form
     {
         private int childFormNumber = 0;
+        public int idUsuario, idRol;
+        public string nombre, rol;
+        public bool estado;
+
 
         public FrmPrincipal()
         {
@@ -106,12 +110,62 @@ namespace Sistema.Presentacion
 
         private void FrmPrincipal_Load(object sender, EventArgs e)
         {
+            stBarraInferior.Text = "Desarrollado por Santiago Rojas, ususario: " + this.nombre;
+            MessageBox.Show("Bienvenido: " + this.nombre,"Sistema de ventas",MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+            if(this.rol.Equals("Administrador"))
+            {
+                menuAccesos.Enabled = true;
+                menuAlmacen.Enabled = true;
+                menuConsultas.Enabled = true;
+                menuIngresos.Enabled = true;
+                menuVentas.Enabled = true;
+                tsCompras.Enabled = true;
+                tsVentas.Enabled = true;
+            }
+            else
+            {
+                if (this.rol.Equals("Vendedor"))
+                {
+                    menuAccesos.Enabled = false;
+                    menuAlmacen.Enabled = false;
+                    menuIngresos.Enabled = false;
+                    tsCompras.Enabled = false;
+                    menuConsultas.Enabled = true;
+                    menuVentas.Enabled = true;
+                    tsVentas.Enabled = true;
+                }
+                else
+                {
+                    if (this.rol.Equals("Almacenero"))
+                    {
+                        menuAccesos.Enabled = false;
+                        tsVentas.Enabled = false;
+                        menuVentas.Enabled =false;
+                        menuAlmacen.Enabled = true;
+                        menuIngresos.Enabled = true;
+                        menuConsultas.Enabled = true;
+                        tsCompras.Enabled = true;
+                    }
+                    else
+                    {
+                        menuAccesos.Enabled = false;
+                        menuAlmacen.Enabled = false;
+                        menuIngresos.Enabled = false;
+                        tsCompras.Enabled = false;
+                        menuConsultas.Enabled = false;
+                        menuVentas.Enabled = false;
+                        tsVentas.Enabled = false;
+                    }
+                }
+            }
         }
 
         private void clienteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            FrmCliente frm = new FrmCliente();
+            frm.MdiParent = this;
+            frm.Show();
         }
 
         private void toolStripButton1_Click(object sender, EventArgs e)
@@ -134,6 +188,24 @@ namespace Sistema.Presentacion
         private void articulosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmArticulo frm = new FrmArticulo();
+            frm.MdiParent = this;
+            frm.Show();
+        }
+
+        private void salirToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult opcion;
+            opcion = MessageBox.Show("Deseas salir del sistema?", "Sistema de Ventas",MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (opcion == DialogResult.OK)
+            {
+                Application.Exit();
+            }
+            
+        }
+
+        private void proveedoresToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmProveedor frm= new FrmProveedor();
             frm.MdiParent = this;
             frm.Show();
         }

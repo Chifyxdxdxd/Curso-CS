@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data;
-using Sistema.Datos;
+﻿using Sistema.Datos;
 using Sistema.Entidades;
+using System.Data;
 
 namespace Sistema.Negocio
 {
@@ -21,6 +16,12 @@ namespace Sistema.Negocio
         {
             DUsuario Datos = new DUsuario();
             return Datos.Buscar(Valor);
+        }
+
+        public static DataTable Login(string Email, string Clave)
+        {
+            DUsuario Datos = new DUsuario();
+            return Datos.Login(Email, Clave);
         }
 
         public static string Insertar(int IdRol,string Nombre,string TipoDocumento,string NumDocumento, string Direccion,string Telefono,string Email,string Clave)
